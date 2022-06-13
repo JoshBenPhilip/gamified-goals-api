@@ -1,4 +1,4 @@
-const { connectDb } = require("./connectDb");
+const connectDb = require("./connectDb");
 
 exports.createTask = (request, response) => {
   const newTask = {
