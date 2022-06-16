@@ -15,7 +15,7 @@ app.use(express.json());
 
 // Routes
 app.post("/tasks", createTask);
-app.get("/tasks", getTasks);
+app.get("/tasks/:userId", getTasks);
 app.patch("/tasks/:taskId", updateTask);
 
 exports.api = functions.https.onRequest(app);
