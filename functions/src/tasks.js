@@ -1,7 +1,9 @@
+const { user } = require("firebase-functions/v1/auth");
 const connectDb = require("./connectDb");
 
 exports.createTask = (request, response) => {
   const newTask = {
+    userId: request.body.userId,
     task: request.body.task,
     done: false,
   };
@@ -14,7 +16,9 @@ exports.createTask = (request, response) => {
 
 exports.getTasks = (request, response) => {
   const db = connectDb();
+  const { userId } = request.params;
   db.collection("tasks")
+    .where("userId", "==", userId)
     .get()
     .then((snapshot) => {
       const taskList = snapshot.docs.map((doc) => {
