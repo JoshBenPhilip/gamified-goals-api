@@ -2,7 +2,12 @@ const functions = require("firebase-functions");
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const { getTasks, createTask, updateTask } = require("./src/tasks");
+const {
+  getTasks,
+  createTask,
+  updateTask,
+  getTasksCompleted,
+} = require("./src/tasks");
 const PORT = process.env.PORT || 3005;
 
 const app = express();
