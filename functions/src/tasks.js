@@ -19,6 +19,7 @@ exports.getTasks = (request, response) => {
   const { userId } = request.params;
   db.collection("tasks")
     .where("userId", "==", userId)
+    .where("deleted", "==", false)
     .get()
     .then((snapshot) => {
       const taskList = snapshot.docs.map((doc) => {
@@ -38,6 +39,16 @@ exports.updateTask = (request, response) => {
   db.collection("tasks")
     .doc(taskId)
     .update({ done: isDone })
+    .then((doc) => response.status(202).send(doc))
+    .catch((err) => response.status(500).send(err));
+};
+
+exports.deleteTask = (request, response) => {
+  const { taskId } = request.params;
+  const db = connectDb();
+  db.collection("tasks")
+    .doc(taskId)
+    .update({ deleted: true })
     .then((doc) => response.status(202).send(doc))
     .catch((err) => response.status(500).send(err));
 };
