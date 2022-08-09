@@ -1,3 +1,4 @@
+const { response, request } = require("express");
 const { user } = require("firebase-functions/v1/auth");
 const connectDb = require("./connectDb");
 
@@ -6,6 +7,7 @@ exports.createTask = (request, response) => {
     userId: request.body.userId,
     task: request.body.task,
     done: false,
+    deleted: false,
   };
   const db = connectDb();
   db.collection("tasks")

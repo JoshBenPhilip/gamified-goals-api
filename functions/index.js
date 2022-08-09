@@ -2,7 +2,13 @@ const functions = require("firebase-functions");
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const { getTasks, createTask, updateTask, deleteTask } = require("./src/tasks");
+const {
+  getTasks,
+  createTask,
+  updateTask,
+  getTasksCompleted,
+  deleteTask,
+} = require("./src/tasks");
 const PORT = process.env.PORT || 3005;
 
 const app = express();
@@ -17,6 +23,6 @@ app.use(express.json());
 app.post("/tasks", createTask);
 app.get("/tasks/:userId", getTasks);
 app.patch("/tasks/:taskId", updateTask);
-app.patch("/tasks/:taskId", deleteTask);
+app.patch("/tasks/delete/:taskId", deleteTask);
 
 exports.api = functions.https.onRequest(app);
