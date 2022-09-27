@@ -5,7 +5,6 @@ const connectDb = require("./connectDb");
 exports.createTask = (request, response) => {
   const newTask = {
     userId: request.body.userId,
-    task: request.body.task,
     done: false,
     deleted: false,
   };
