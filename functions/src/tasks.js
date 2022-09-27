@@ -15,6 +15,21 @@ exports.createTask = (request, response) => {
     .catch((err) => response.status(500).send(err));
 };
 
+exports.createTaskWithTier = (request, response) => {
+  const newTask = {
+    userId: request.body.userId,
+    taskTier: request.body.taskTier,
+    taskParent: request.body.taskParent,
+    done: false,
+    deleted: false,
+  };
+  const db = connectDb();
+  db.collection("tasks")
+    .add(newTask)
+    .then((doc) => response.status(201).send(doc.id))
+    .catch((err) => response.status(500).send(err));
+};
+
 exports.getTasks = (request, response) => {
   const db = connectDb();
   const { userId } = request.params;
