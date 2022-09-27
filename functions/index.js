@@ -23,7 +23,7 @@ app.use(express.json());
 // Routes
 app.post("/tasks", createTask);
 app.get("/tasks/:userId", getTasks);
-app.get("/tasksByTier/:userId", getTasksByTier);
+// app.get("/tasksByTier/:userId", getTasksByTier);
 app.patch("/tasks/:taskId", updateTask);
 app.patch("/tasks/delete/:taskId", deleteTask);
 
