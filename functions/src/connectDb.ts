@@ -1,7 +1,8 @@
-const admin = require("firebase-admin");
-const credentials = require("../credentials.json");
+import admin from "firebase-admin";
+import credentials from "../credentials.json";
 
-function connectDb() {
+export default function connectDb() {
+  let credentials: any;
   if (!admin.apps.length) {
     admin.initializeApp({
       credential: admin.credential.cert(credentials),
@@ -9,5 +10,3 @@ function connectDb() {
   }
   return admin.firestore();
 }
-
-module.exports = connectDb;

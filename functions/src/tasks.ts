@@ -1,6 +1,6 @@
-const { response, request } = require("express");
-const { user } = require("firebase-functions/v1/auth");
-const connectDb = require("./connectDb");
+import { response, request } from "express";
+import { user } from "firebase-functions/v1/auth";
+import connectDb from "./connectDb";
 
 exports.createTask = (request, response) => {
   const newTask = {
